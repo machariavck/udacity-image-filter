@@ -1,0 +1,38 @@
+{
+  "name": "udacity-c2-image-filter",
+  "version": "1.0.0",
+  "description": "image filtering app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf www/ || true",
+    "build": "npm run clean && tsc && cp package.json www/package.json && mkdir www/tmp/ && cd www && zip -r Archive.zip . && cd ..",
+    "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grutt/udacity-c2-image-filter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grutt/udacity-c2-image-filter/issues"
+  },
+  "homepage": "https://github.com/grutt/udacity-c2-image-filter#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "jimp": "^0.16.1",
+    "lodash": "^4.17.21",
+    "rimraf": "^3.0.2",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.36",
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.7.18",
+    "@types/validator": "^13.7.6",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.8.3"
+  }
+}
