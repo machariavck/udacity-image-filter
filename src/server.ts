@@ -28,28 +28,27 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   /**************************************************************************** */
 	app.get('/filteredimage', (req: Request, res: Response) => {
-		
-		const image_url = req.query.image_url.toString()
+
+		type url = { image_url: string }	
+		let { image_url }: url = req.query
 
 		if (!image_url)
 			return res.status(400).send('you have to provide a url')
 				
-		filterImageFromURL(image_url).then(IMG_PATH => {
-
+		filterImageFromURL(image_url).then((IMG_PATH: string) =>
 			res.status(200).sendFile(IMG_PATH, err =>
 				err ? res.status(404).send('error') : deleteLocalFiles([IMG_PATH])
 			)
-		})
+		)
 
 	})
-  //! END @TODO1
-  
-  // Root Endpoint
-  // Displays a simple message to the user
-  app.get( "/", async ( req, res ) => {
-    res.send("try GET /filteredimage?image_url={{}}")
-  } );
-  
+	//! END @TODO1
+	
+	// Root Endpoint
+	// Displays a simple message to the user
+	app.get( "/", async ( req: Request, res: Response ) =>
+		res.send("try GET /filteredimage?image_url={{}}")
+	);
 
   // Start the Server
   app.listen( port, () => {
